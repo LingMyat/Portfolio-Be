@@ -15,6 +15,8 @@ app.use("/projects", projectRouter);
 const { ItemRouter } = require('./routes/item');
 app.use("/items", ItemRouter);
 
+app.get("/", (req,res) => res.json('Work on progress'));
+
 app.get("/skills", async (req, res) => {
     try {
         const data = await prisma.skill.findMany();
