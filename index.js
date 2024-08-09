@@ -24,10 +24,11 @@ app.get("/skills", async (req, res) => {
         res.status(500).json({ error: e });
     }
 });
+const port   = process.env.PORT || 8000;
 
-const server = app.listen(8000, () => {
-    console.log("Express API started at 8000...");
-});
+const server = app.listen(
+    port, () => console.log("Express API started")
+);
 
 const gracefulShutdown = async () => {
     await prisma.$disconnect();
