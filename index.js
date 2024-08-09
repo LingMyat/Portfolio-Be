@@ -26,19 +26,14 @@ app.get("/skills", async (req, res) => {
         res.status(500).json({ error: e });
     }
 });
+
 const port   = process.env.PORT || 8000;
 
-const server = app.listen(
+app.listen(
     port, () => console.log("Express API started")
 );
 
-const gracefulShutdown = async () => {
-    await prisma.$disconnect();
-    server.close(() => {
-        console.log("Portfolio 101 API closed.");
-        process.exit(0);
-    });
-};
-
 process.on("SIGTERM", gracefulShutdown);
 process.on("SIGINT", gracefulShutdown);
+
+export default app;
